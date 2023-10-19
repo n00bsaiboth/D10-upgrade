@@ -836,6 +836,21 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 // This is defined inside the read-only "config" directory, deployed via Git.
 $settings['config_sync_directory'] = '../config/sync';
 
+$databases['default']['default'] = array (
+  'database' => 'drupal9',
+  'username' => 'drupal9',
+  'password' => 'drupal9',
+  'prefix' => '',
+  'host' => 'database',
+  'port' => '',
+  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'driver' => 'mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+  'init_commands' => [
+    'isolation_level' => 'SET SESSION tx_isolation=\'READ-COMMITTED\'',
+  ],
+);
+
 // Lando settings.
 if (file_exists($app_root . '/' . $site_path . '/settings.lando.php')) {
   include $app_root . '/' . $site_path . '/settings.lando.php';
